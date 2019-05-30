@@ -9,10 +9,46 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <style>
+            .template {
+                display: none;
+            }
+        </style>
+        <script>
+            $(function(){
+                /* 後端資料 */
+                let data = {
+                    apple: 3,
+                    orange: 2,
+                    banana: 1
+                };
+                /* 畫面呈現 */
+                let appleUl = $("ul.list-group.template").clone();
+                appleUl.removeClass("template");
+                $("#content").append(appleUl);
+                for(let i = 0;i < data.apple;i++){
+                    let appleLi = $("li.list-group-item.template").clone();
+                    appleLi.html("蘋果");
+                    appleLi.removeClass("template");
+                    appleUl.append(appleLi);
+                }
+            });
+        </script>
     </head>
     <body>
-        <div>test</div>
-        <div>test2</div>
-        <div>roy test</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3" id="content">
+                    <li class="list-group-item template"></li>
+                    <ul class="list-group template">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
     </body>
 </html>
