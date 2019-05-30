@@ -36,6 +36,24 @@ and open the template in the editor.
                     appleLi.removeClass("template");
                     appleUl.append(appleLi);
                 }
+                let orangeUl = $("ul.list-group.template").clone();
+                orangeUl.removeClass("template");
+                $("#content").append(orangeUl);
+                for(let i = 0;i < data.orange;i++){
+                    let orangeLi = $("li.list-group-item.template").clone();
+                    orangeLi.html("橘子");
+                    orangeLi.removeClass("template");
+                   orangeUl.append(orangeLi);
+                }
+                let bananaUl = $("ul.list-group.template").clone();
+                bananaUl.removeClass("template");
+                $("#content").append(bananaUl);
+                for(let i = 0;i < data.banana;i++){
+                    let bananaLi = $("li.list-group-item.template").clone();
+                    bananaLi.html("香蕉");
+                    bananaLi.removeClass("template");
+                   bananaUl.append(bananaLi);
+                }
             });
         </script>
     </head>
