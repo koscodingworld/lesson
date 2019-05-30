@@ -19,6 +19,24 @@ and open the template in the editor.
             }
         </style>
         <script>
+            /*
+             * 創造水果種類、數量
+             * 
+             * @param string fruitName 水果名稱
+             * @param int fruitCount 水果數量
+             * @returns none
+             */
+            function createFruitContent(fruitName, fruitCount){
+                let fruitUl = $("ul.list-group.template").clone();
+                fruitUl.removeClass("template");
+                $("#content").append(fruitUl);
+                for(let i = 0;i < fruitCount;i++){
+                    let fruitLi = $("li.list-group-item.template").clone();
+                    fruitLi.html(fruitName);
+                    fruitLi.removeClass("template");
+                    fruitUl.append(fruitLi);
+                }
+            }
             $(function(){
                 /* 後端資料 */
                 let data = {
@@ -26,34 +44,11 @@ and open the template in the editor.
                     orange: 2,
                     banana: 1
                 };
+                
                 /* 畫面呈現 */
-                let appleUl = $("ul.list-group.template").clone();
-                appleUl.removeClass("template");
-                $("#content").append(appleUl);
-                for(let i = 0;i < data.apple;i++){
-                    let appleLi = $("li.list-group-item.template").clone();
-                    appleLi.html("蘋果");
-                    appleLi.removeClass("template");
-                    appleUl.append(appleLi);
-                }
-                let orangeUl = $("ul.list-group.template").clone();
-                orangeUl.removeClass("template");
-                $("#content").append(orangeUl);
-                for(let i = 0;i < data.orange;i++){
-                    let orangeLi = $("li.list-group-item.template").clone();
-                    orangeLi.html("橘子");
-                    orangeLi.removeClass("template");
-                   orangeUl.append(orangeLi);
-                }
-                let bananaUl = $("ul.list-group.template").clone();
-                bananaUl.removeClass("template");
-                $("#content").append(bananaUl);
-                for(let i = 0;i < data.banana;i++){
-                    let bananaLi = $("li.list-group-item.template").clone();
-                    bananaLi.html("香蕉");
-                    bananaLi.removeClass("template");
-                   bananaUl.append(bananaLi);
-                }
+                createFruitContent("蘋果", data.apple);
+                createFruitContent("橘子", data.orange);
+                createFruitContent("香蕉", data.banana);
             });
         </script>
     </head>
