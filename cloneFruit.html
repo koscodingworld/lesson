@@ -29,6 +29,7 @@ and open the template in the editor.
             function createFruitContent(fruitName, fruitCount){
                 let fruitUl = $("ul.list-group.template").clone();
                 fruitUl.removeClass("template");
+                fruitUl.find("li").remove();
                 $("#content").append(fruitUl);
                 for(let i = 0;i < fruitCount;i++){
                     let fruitLi = $("li.list-group-item.template").clone();
