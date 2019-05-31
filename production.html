@@ -23,6 +23,7 @@ and open the template in the editor.
                     id: 1,
                     name: "蘋果",
                     description: "他是一顆蘋果",
+                    count: 10,
                     unit: "顆",
                     price: 10
                 };
@@ -54,13 +55,18 @@ and open the template in the editor.
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"></h5>
+                        <h5 class="modal-title">商品名稱</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        
+                    <div class="modal-body" id="modal-body">
+                        <div class="row">
+                            <div class="col-12">商品名稱：<span name="name"></span></div>
+                            <div class="col-12">商品描述：<span name="description"></span></div>
+                            <div class="col-12">商品數量：<span name="count"></span><span name="unit"></span></div>
+                            <div class="col-12">商品單價：<span name="price"></span>元</div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
