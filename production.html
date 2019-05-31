@@ -29,11 +29,17 @@ and open the template in the editor.
                 };
                 
                 $("#productionDetailBtn").click(function(){
+                    $("#modal-body").find("span[name='name']").html(data.name);
+                    $("#modal-body").find("span[name='description']").html(data.description);
+                    $("#modal-body").find("span[name='count']").html(data.count);
+                    $("#modal-body").find("span[name='unit']").html(data.unit);
+                    $("#modal-body").find("span[name='price']").html(data.price);
                     $("#modal").modal("show");
                 });
                 
                 /* 畫面初始化，設置商品 */
-                
+                $("#apple").find("h5").html(data.name);
+                $("#apple").find("p").html(data.description);
             });
         </script>
     </head>
