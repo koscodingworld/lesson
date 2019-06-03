@@ -18,42 +18,30 @@ and open the template in the editor.
         </style>
         <script>
             $(function(){
-                /* 後端資料 */
-                let data = {
-                    id: 1,
-                    name: "蘋果",
-                    description: "他是一顆蘋果",
-                    count: 10,
-                    unit: "顆",
-                    price: 10
-                };
                 
                 $("#productionDetailBtn").click(function(){
-                    $("#modal-body").find("span[name='name']").html(data.name);
-                    $("#modal-body").find("span[name='description']").html(data.description);
-                    $("#modal-body").find("span[name='count']").html(data.count);
-                    $("#modal-body").find("span[name='unit']").html(data.unit);
-                    $("#modal-body").find("span[name='price']").html(data.price);
-                    $("#modal").modal("show");
+                    
                 });
                 
-                /* 畫面初始化，設置商品 */
-                $("#apple").find("h5").html(data.name);
-                $("#apple").find("p").html(data.description);
-                
+                $.ajax({
+                    url: "./practice_ajax.php",
+                    type: "POST",
+                    success: function(response){
+                        console.log(response);
+                    }
+                });
             });
         </script>
     </head>
     <body>
-        <button class="btn btn-primary">測試 ajax</button>
         <div class="container">
             <div class="row">
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body" id="apple">
-                            <h5 class="card-title">商品名稱</h5>
-                            <p class="card-text">商品描述</p>
-                            <button class="btn btn-primary" id="productionDetailBtn">查看商品詳細資訊</button>
+                            <h5 class="card-title">角色編號</h5>
+                            <p class="card-text">角色名稱</p>
+                            <button class="btn btn-primary" id="roleDetail">查看角色詳細資訊</button>
                         </div>
                     </div>
                 </div>
@@ -70,10 +58,10 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body" id="modal-body">
                         <div class="row">
-                            <div class="col-12">商品名稱：<span name="name"></span></div>
-                            <div class="col-12">商品描述：<span name="description"></span></div>
-                            <div class="col-12">商品數量：<span name="count"></span><span name="unit"></span></div>
-                            <div class="col-12">商品單價：<span name="price"></span>元</div>
+                            <div class="col-12">角色 id：<span name="id"></span></div>
+                            <div class="col-12">角色名字：<span name="name"></span></div>
+                            <div class="col-12">角色帳號：<span name="account"></span></div>
+                            <div class="col-12">角色密碼：<span name="password"></span></div>
                         </div>
                     </div>
                     <div class="modal-footer">

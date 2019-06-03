@@ -1,14 +1,10 @@
 <?php
     
-    if (isset($_POST["password"])){
-        if ($_POST["password"] == "13579"){
-            echo "帳號為：123456"; 
-        }else{
-           echo "密碼錯誤"; 
-        }
-    }else{
-        echo "沒有給我 password 的參數";
-    }
+    $dsn = "mysql:host=db.mis.kuas.edu.tw;dbname=s1104137208;charset=utf8";
+    $pdo = new PDO($dsn, "s1104137208", "S124952301");
+    $pdoStr = $pdo->prepare("SELECT * FROM user");
+    $pdoStr->execute();
+    echo json_encode($pdoStr->fetchAll(PDO::FETCH_ASSOC));
     
 ?>
 
