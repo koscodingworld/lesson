@@ -14,7 +14,9 @@ and open the template in the editor.
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <style>
-            
+            .template {
+                display: none;
+            }
         </style>
         <script>
             $(function(){
@@ -27,9 +29,20 @@ and open the template in the editor.
                     url: "./practice_ajax.php",
                     type: "POST",
                     success: function(response){
-                        console.log(response);
+                        console.log(JSON.parse(response));
+                        let aaa = JSON.parse(response);
+                        $(".card-body").addClass("template");
+                        for(let i=0;i<aaa.length;i++){
+                            let Character = $(".card-body.template").clone();
+                            Character.find("h5").html(aaa[i]["id"]);
+                            Character.find("p").html(aaa[i]["name"]);
+                            Character.removeClass("template");
+                            $(".card").append(Character);
+                        }
                     }
+                    
                 });
+      
             });
         </script>
     </head>
@@ -51,7 +64,7 @@ and open the template in the editor.
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">商品名稱</h5>
+                        <h5 class="modal-title">角色資訊</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
