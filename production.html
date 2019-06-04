@@ -20,41 +20,49 @@ and open the template in the editor.
         </style>
         <script>
             $(function(){
-                
-                $("#productionDetailBtn").click(function(){
-                    
-                });
+                let rolesData;
                 
                 $.ajax({
                     url: "./practice_ajax.php",
                     type: "POST",
                     success: function(response){
                         console.log(JSON.parse(response));
-                        let aaa = JSON.parse(response);
-                        $(".card-body").addClass("template");
-                        for(let i=0;i<aaa.length;i++){
-                            let Character = $(".card-body.template").clone();
-                            Character.find("h5").html(aaa[i]["id"]);
-                            Character.find("p").html(aaa[i]["name"]);
+                        rolesData = JSON.parse(response);
+                        for(let i = 0;i < rolesData.length;i++){
+                            let Character = $("#main .col-4.template").clone(true);
+                            Character.find("h5").html(rolesData[i]["id"]);
+                            Character.find("p").html(rolesData[i]["name"]);
+                            Character.find("button").data("id", rolesData[i]["id"]);
                             Character.removeClass("template");
-                            $(".card").append(Character);
+                            $("#main .row").append(Character);
                         }
                     }
-                    
                 });
-      
+                
+                $("[name='roleDetail']").click(function(){
+                    let id = $(this).data("id");
+                    for(let i = 0;i < rolesData.length;i++){
+                        if (rolesData[i]["id"] == id){
+                            $("#modal-body span[name='id']").html(rolesData[i]["id"]);
+                            $("#modal-body span[name='name']").html(rolesData[i]["name"]);
+                            $("#modal-body span[name='account']").html(rolesData[i]["account"]);
+                            $("#modal-body span[name='password']").html(rolesData[i]["password"]);
+                        }
+                    }
+                    $(".modal").modal("show");
+                });
             });
         </script>
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="main">
             <div class="row">
-                <div class="col-4">
+                <div class="col-4 template">
                     <div class="card">
                         <div class="card-body" id="apple">
                             <h5 class="card-title">角色編號</h5>
                             <p class="card-text">角色名稱</p>
-                            <button class="btn btn-primary" id="roleDetail">查看角色詳細資訊</button>
+                            <button class="btn btn-primary" name="roleDetail">查看角色詳細資訊</button>
                         </div>
                     </div>
                 </div>
