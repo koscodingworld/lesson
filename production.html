@@ -32,7 +32,7 @@ and open the template in the editor.
                             let Character = $("#main .col-4.template").clone(true);
                             Character.find("h5").html(rolesData[i]["id"]);
                             Character.find("p").html(rolesData[i]["name"]);
-                            Character.find("button").data("id", rolesData[i]["id"]);
+                            Character.find("button").data("index", i);
                             Character.removeClass("template");
                             $("#main .row").append(Character);
                         }
@@ -40,15 +40,11 @@ and open the template in the editor.
                 });
                 
                 $("[name='roleDetail']").click(function(){
-                    let id = $(this).data("id");
-                    for(let i = 0;i < rolesData.length;i++){
-                        if (rolesData[i]["id"] == id){
-                            $("#modal-body span[name='id']").html(rolesData[i]["id"]);
-                            $("#modal-body span[name='name']").html(rolesData[i]["name"]);
-                            $("#modal-body span[name='account']").html(rolesData[i]["account"]);
-                            $("#modal-body span[name='password']").html(rolesData[i]["password"]);
-                        }
-                    }
+                    let index = $(this).data("index");
+                    $("#modal-body span[name='id']").html(rolesData[index]["id"]);
+                    $("#modal-body span[name='name']").html(rolesData[index]["name"]);
+                    $("#modal-body span[name='account']").html(rolesData[index]["account"]);
+                    $("#modal-body span[name='password']").html(rolesData[index]["password"]);
                     $(".modal").modal("show");
                 });
             });
