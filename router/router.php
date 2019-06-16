@@ -16,7 +16,7 @@ switch ($request[2]) {
         switch ($request[3]) {
             case 'search' :
                 (new UserController())->search();
-                var_dump(Db::connect());
+                var_dump((new DB())->connect());
                 break;
             /* 404 */
             default:

@@ -1,3 +1,7 @@
 {
-    "name": "USER"
+    "dbType": "mysql",
+    "host": "localhost",
+    "name": "ticket",
+    "username": "root",
+    "password": "root"
 }

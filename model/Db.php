@@ -1,22 +1,27 @@
 <?php
 
-namespace model;
-
 class Db {
 
     private $dbType = 'mysql';
     private $host = 'localhost';
-    private $name = 'test';
+    private $name = 'ticket';
     private $username = 'root';
     private $password = 'root';
-    private $dsn;
-    
-    public function __construct(){
-        $dsnText = $this->dbType . "host=" . $host . ";dbname=" . $dbName;
-        $this->dsn = new PDO($dsnText, $this->username, $this->password);
+
+    public function __construct() {
+        $dbConfig = file_get_contents("../config/db_config.json");
+        $dbConfig = json_decode($dbConfig);
+        $this->dbType = $dbConfig->dbType;
+        $this->host = $dbConfig->host;
+        $this->name = $dbConfig->name;
+        $this->username = $dbConfig->username;
+        $this->password = $dbConfig->password;
     }
-    
-    public static function connect(){
-        return $this->dsn;
+
+    public function connect() {
+        $dsnText = $this->dbType . ":host=" . $this->host . ";dbname=" . $this->name;
+        $pdo = new PDO($dsnText, $this->username, $this->password);
+        return $pdo;
     }
+
 }
