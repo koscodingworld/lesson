@@ -24,6 +24,9 @@ switch ($request[2]) {
                 break;
         }
         break;
+    case "login":
+        Route::view(__DIR__ . '/views/login.php');
+        break;
     /* 404 */
     default:
         echo "找不到此網頁";
