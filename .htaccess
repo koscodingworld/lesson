@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /lesson
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ router/router.php/$1 [QSA,L]
+RewriteRule /$ router/router.php [QSA,L]
