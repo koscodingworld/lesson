@@ -1,7 +1,7 @@
 {
     "dbType": "mysql",
-    "host": "localhost",
-    "name": "ticket",
-    "username": "root",
-    "password": "root"
+    "host": "db.mis.kuas.edu.tw",
+    "name": "s1104137208",
+    "username": "s1104137208",
+    "password": "S124952301"
 }
