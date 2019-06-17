@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /lesson
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule (.*) - [L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ router/router.php/$1 [QSA,L]
+RewriteRule ^login$ router/router.php/$1 
+RewriteRule ^(.+)/(.+)$ router/router.php/$1 [QSA,L]
 DirectoryIndex views/index.php

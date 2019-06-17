@@ -1,22 +1,22 @@
 <?php
 
-define('ROOT', __DIR__ . '/..');
+define('ROOT', '../');
 include_once ROOT . "/autoload.php";
 $request = $_SERVER['REDIRECT_URL'];
+var_dump($request);
 $request = explode("/", $request);
-
 /* 網址路徑（url："/lesson"） */
 switch ($request[2]) {
-    /*首頁*/
-    case '' :
-        Route::view(__DIR__ . '/views/index.php');
-        break;
     /* 會員 */
     case "user":
+        /* 若沒 */
+        if (!isset($request[3])) {
+            echo "找不到此網頁";
+            return;
+        }
         switch ($request[3]) {
             case 'search' :
-                (new UserController())->search();
-                var_dump((new DB())->connect());
+                Route::toControllerAction("User", "search");
                 break;
             /* 404 */
             default:
@@ -25,7 +25,7 @@ switch ($request[2]) {
         }
         break;
     case "login":
-        Route::view(__DIR__ . '/views/login.php');
+        Route::view('views/login.php');
         break;
     /* 404 */
     default:
@@ -36,7 +36,13 @@ switch ($request[2]) {
 class Route {
 
     public static function view($url) {
-        header("Location:" . $url);
+        var_dump($url);
+        echo "<script>location.href='" . $url . "'</script>";
+    }
+
+    public static function toControllerAction($controller, $action) {
+        $className = $controller . "Controller";
+        (new $className())->$action();
     }
 
 }
