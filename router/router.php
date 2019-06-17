@@ -1,9 +1,9 @@
 <?php
 
 define('ROOT', '../');
+session_start();
 include_once ROOT . "/autoload.php";
 $request = $_SERVER['REDIRECT_URL'];
-var_dump($request);
 $request = explode("/", $request);
 /* 網址路徑（url："/lesson"） */
 switch ($request[2]) {
@@ -25,7 +25,15 @@ switch ($request[2]) {
         }
         break;
     case "login":
-        Route::view('views/login.php');
+        if (isset($_SESSION["user_id"])){
+            Route::view('views/index.php');
+        }else{
+            if (isset($_POST["account"])){
+                Route::toControllerAction("Login", "login");
+            }else{
+                Route::view('views/login.php');
+            }
+        }
         break;
     /* 404 */
     default:
@@ -36,8 +44,8 @@ switch ($request[2]) {
 class Route {
 
     public static function view($url) {
-        var_dump($url);
-        echo "<script>location.href='" . $url . "'</script>";
+        header("Location: " . $url);
+//        echo "<script>location.href='" . $url . "'</script>";
     }
 
     public static function toControllerAction($controller, $action) {
