@@ -28,7 +28,12 @@
                         data: datas,
                         type: "POST",
                         success: function (data) {
-                            console.log(data);
+                            let obj = JSON.parse(data);
+                            if (obj.status_code == "0") {
+                                location.href = "http://localhost/lesson/";
+                            } else {
+                                alert("登入失敗");
+                            }
                         }
                     });
                 });
