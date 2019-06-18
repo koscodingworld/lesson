@@ -1,0 +1,6 @@
+#middleContent {
+    height: calc(100% - 60px);
+}
+nav.navbar {
+    background-color: #e3f2fd;
+}
