@@ -25,7 +25,9 @@ switch ($request[2]) {
         }
         break;
     case "login":
-        if (isset($_SESSION["user_id"])){
+        if (isset($request[3]) && $request[3] == "checkLogin"){
+            
+        }else if (isset($_SESSION["user_id"])){
             Route::view('views/index.php');
         }else{
             if (isset($_POST["account"])){
